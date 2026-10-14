@@ -58,7 +58,7 @@ export const EmployeeDetailPage = () => {
     .toUpperCase();
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-4">
       {/* Top back button and actions */}
       <div className="flex items-center justify-between">
         <Link
@@ -90,25 +90,28 @@ export const EmployeeDetailPage = () => {
       {/* Main Profile Card */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
         {/* Banner */}
-        <div className="h-32 bg-gradient-to-r from-indigo-500 via-indigo-600 to-violet-600"></div>
+        <div className="h-32 sm:h-36 bg-gradient-to-r from-indigo-600 via-indigo-700 to-violet-700"></div>
 
         {/* Profile Content */}
-        <div className="px-6 sm:px-10 pb-8 pt-0 relative">
-          {/* Avatar & Basic details */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between -mt-14 mb-6 gap-4">
-            <div className="flex flex-col sm:flex-row sm:items-end gap-4">
-              <div className="w-24 h-24 rounded-2xl bg-white p-1.5 shadow-md border border-slate-200 flex-shrink-0">
-                <div className="w-full h-full rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 font-extrabold text-2xl">
+        <div className="px-6 sm:px-10 pb-8 relative">
+          {/* Avatar & Header details */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-end gap-5">
+              {/* Avatar independently pulled up over banner */}
+              <div className="-mt-14 sm:-mt-16 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-1.5 shadow-xl border-4 border-white flex-shrink-0 z-10">
+                <div className="w-full h-full rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 font-extrabold text-2xl sm:text-3xl">
                   {initials}
                 </div>
               </div>
-              <div className="sm:pb-1">
-                <div className="flex items-center gap-2.5 flex-wrap">
-                  <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+
+              {/* Text Info - sits cleanly on white background with no banner overlap */}
+              <div className="pt-2 sm:pt-4">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     {employee.name}
                   </h1>
                   <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-semibold ${
                       employee.status === "Active"
                         ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                         : employee.status === "Remote"
@@ -128,15 +131,18 @@ export const EmployeeDetailPage = () => {
                     {employee.status || "Active"}
                   </span>
                 </div>
-                <p className="text-sm text-slate-600 font-medium flex items-center gap-2 mt-0.5">
+                <p className="text-sm sm:text-base text-slate-600 font-medium flex items-center gap-2 mt-1">
                   <Briefcase className="w-4 h-4 text-slate-400" />
                   {employee.role}
                 </p>
               </div>
             </div>
 
-            <div className="text-xs font-mono text-slate-400 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 w-fit">
-              ID: {employee.id}
+            {/* ID Badge */}
+            <div className="self-start sm:self-end sm:pb-2">
+              <span className="text-xs font-mono font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 inline-block">
+                ID: {employee.id}
+              </span>
             </div>
           </div>
 
